@@ -1,4 +1,5 @@
 [workspace]
 members = [
-  "ruml-macro-rules"
+  "ruml-macro-rules",
+  "ruml"
 ]
