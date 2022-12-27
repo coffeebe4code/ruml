@@ -349,7 +349,7 @@ macro_rules! hr {
 #[macro_export]
 macro_rules! html {
     ( .lang = $lang:expr, $($inner:tt)* ) => {
-        concat!("<html lang='", $lang, "'>", $($inner)*,"</html>")
+        concat!("<!DOCTYPE html><html lang='", $lang, "'>", $($inner)*,"</html>")
     };
 }
 
