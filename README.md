@@ -2,7 +2,7 @@
 
 __**description**__
 
-(ru)st macros for ht(ml) expansion => ruml
+(r)st macros for h(tml) expansion => rtml
 
 __**usage**__
 
