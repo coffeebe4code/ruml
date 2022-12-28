@@ -1,5 +1,5 @@
 [workspace]
 members = [
-  "ruml",
+  "rtml",
   "rtml-tester",
 ]
