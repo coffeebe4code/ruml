@@ -1,11 +1,22 @@
-#![doc = include_str!("../../README.md")]
 pub mod attributes;
 pub mod macros;
 pub mod tags;
 
+use attributes::Attribute;
 use std::fmt;
 use tags::Tag;
 
+macro_rules! attributeit {
+    ($attr:ident, $val:expr) => {
+        struct $attr;
+        impl fmt::Display for $attr {
+            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                return write!(f, "{}=\"", $val);
+            }
+        }
+        impl Attribute for $attr {}
+    };
+}
 macro_rules! tagit {
     ($tag:ident, $val:expr) => {
         struct $tag;
@@ -17,6 +28,30 @@ macro_rules! tagit {
         impl Tag for $tag {}
     };
 }
+
+// need a special dataAttr as its attribute name is dynamic
+struct DataAttr(String);
+impl fmt::Display for DataAttr {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        return write!(f, "{}-{}=\"", "data", self.0);
+    }
+}
+impl Attribute for DataAttr {}
+
+attributeit! {AccessKeyAttr, "accesskey"}
+attributeit! {ClassAttr, "class"}
+attributeit! {ContentEditableAttr, "contenteditable"}
+attributeit! {DirAttr, "dir"}
+attributeit! {DraggableAttr, "draggable"}
+attributeit! {HiddenAttr, "hidden"}
+attributeit! {IdAttr, "id"}
+attributeit! {LangAttr, "lang"}
+attributeit! {SpellCheckAttr, "spellcheck"}
+attributeit! {StyleAttr, "style"}
+attributeit! {TabIndexAttr, "tabindex"}
+attributeit! {TitleAttr, "title"}
+attributeit! {TranslateAttr, "translate"}
+
 tagit! {ATag, "a"}
 tagit! {AbbrTag, "abbr"}
 tagit! {AddressTag, "address"}

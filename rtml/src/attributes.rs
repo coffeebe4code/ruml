@@ -6,6 +6,8 @@ use std::fmt::Display;
 //    }
 //}
 
+pub trait GlobalAttribute {}
+
 pub trait Attribute: Display + 'static {}
 
 pub trait AttributeValue: ToString {
